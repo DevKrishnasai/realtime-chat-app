@@ -10,8 +10,8 @@ import { setUser } from '../redux/userSlice'
 
 const EditUserDetails = ({onClose,user}) => {
     const [data,setData] = useState({
-        
-        name : user?.name,  //user?.user, 
+
+        name : user?.name,  //user?.user,
         profile_pic : user?.profile_pic
     })
     const uploadPhotoRef = useRef()
@@ -71,14 +71,13 @@ const EditUserDetails = ({onClose,user}) => {
                 withCredentials : true
             })
 
-            console.log('response',response)
             taost.success(response?.data?.message)
-            
+
             if(response.data.success){
                 dispatch(setUser(response.data.data))
                 onClose()
             }
-         
+
         } catch (error) {
             console.log(error)
             taost.error()
@@ -125,7 +124,7 @@ const EditUserDetails = ({onClose,user}) => {
                     </div>
                 </div>
 
-                <Divider/>    
+                <Divider/>
                 <div className='flex gap-2 w-fit ml-auto '>
                     <button onClick={onClose} className='border-primary border text-primary px-4 py-1 rounded hover:bg-primary hover:text-white'>Cancel</button>
                     <button onClick={handleSubmit} className='border-primary bg-primary text-white border px-4 py-1 rounded hover:bg-secondary'>Save</button>

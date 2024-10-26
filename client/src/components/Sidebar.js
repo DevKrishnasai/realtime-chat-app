@@ -38,7 +38,6 @@ const Sidebar = () => {
       });
 
       socketConnection.on("conversation", (data) => {
-        console.log("conversation", data);
 
         const conversationUserData = data.map((conversationUser, index) => {
           if (
