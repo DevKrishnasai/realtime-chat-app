@@ -269,8 +269,8 @@ const sendScheduledMessage = async (scheduledMessage, io) => {
     );
   }
 };
-//every 10 seconds
-cron.schedule("*/10 * * * * *", async () => {
+//every 10 mins check for scheduled messages to send
+cron.schedule("*/10 * * * *", async () => {
   try {
     const currentTime = new Date();
     const messages = await ScheduledMessageModel.find({
@@ -280,7 +280,7 @@ cron.schedule("*/10 * * * * *", async () => {
     console.log("Scheduled messages to send:", messages);
 
     for (const message of messages) {
-      await sendScheduledMessage(message, io); // Ensure io is passed here
+      await sendScheduledMessage(message, io);
     }
   } catch (error) {
     console.error("Error in cron job:", error);
